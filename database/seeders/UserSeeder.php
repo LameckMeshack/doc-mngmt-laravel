@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class DocumentSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class DocumentSeeder extends Seeder
     public function run()
     {
         //
-        \App\Models\Document::factory()->count(5)->create();
+        \App\Models\User::factory()->count(5)->create();
     }
 }

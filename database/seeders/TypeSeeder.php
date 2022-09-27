@@ -13,6 +13,7 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //seeder
+        \App\Models\Type::factory()->count(5)->create();
     }
 }

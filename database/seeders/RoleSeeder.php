@@ -14,5 +14,6 @@ class RoleSeeder extends Seeder
     public function run()
     {
         //
+        \App\Models\Role::factory()->count(5)->create();
     }
 }

@@ -14,5 +14,6 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         //
+        \App\Models\Document::factory()->count(5)->create();
     }
 }
