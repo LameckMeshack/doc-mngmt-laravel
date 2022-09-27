@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Interfaces\userRepositoryInterface;
-use App\Models\Order;
 use App\Models\User;
 
 class OrderRepository implements userRepositoryInterface
