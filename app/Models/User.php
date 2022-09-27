@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'department_id',
+        'role_id',
+        'phone',
+        'email',
+        'photo',
     ];
 
     /**
@@ -41,4 +46,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
+    public function roles()
+    {
+        //    user can only have one role
+        return $this->belongsTo(Role::class);
+    }
+
+    public function departments()
+    {
+        // user can only belong to one department
+        return $this->belongsTo(Department::class);
+    }
 }
