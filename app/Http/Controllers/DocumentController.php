@@ -6,7 +6,7 @@ use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
 use App\Interfaces\documentRepositoryInterface;
 use App\Models\Document;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class DocumentController extends Controller
@@ -17,8 +17,6 @@ class DocumentController extends Controller
         $this->documentRepository = $documentRepository;
         // $this->middleware('auth');
     }
-
-
 
     /**
      * Display a listing of the resource.
@@ -44,15 +42,27 @@ class DocumentController extends Controller
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreDocumentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDocumentRequest $request)
+    public function store(Request $request)
     {
         //
+        $documenDetails = $request->only([
+            "name",
+            "path",
+            "description",
+            "user_id",
+            "department_id",
+            "type_id",
+        ]);
+
+        $document = $this->documentRepository->createDocument($documenDetails);
+        return response()->json($document);
     }
 
     /**
@@ -65,7 +75,7 @@ class DocumentController extends Controller
     {
         //
         //   getting id parameter from request
-        $documentId = $request->id;
+        $documentId = $request->route('id');
         $document = $this->documentRepository->getDocumentById($documentId);
         return response()->json($document);
     }
@@ -93,9 +103,21 @@ class DocumentController extends Controller
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDocumentRequest $request, Document $document)
+    public function update(Request $request, Document $document)
     {
         //
+        $documentId = $request->route('id');
+        $documentDetails = $request->only([
+            "name",
+            "path",
+            "description",
+            "user_id",
+            "department_id",
+            "type_id",
+        ]);
+
+        $document = $this->documentRepository->updateDocument($documentId, $documentDetails);
+        return response()->json($document);
     }
 
     /**
@@ -104,8 +126,11 @@ class DocumentController extends Controller
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Document $document)
+    public function destroy(Request $request): JsonResponse
     {
         //
+        $documentId = $request->id;
+        $this->documentRepository->deleteDocument($documentId);
+        return response()->json(['message' => 'Document deleted successfully']);
     }
 }
