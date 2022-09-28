@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TypeController;
@@ -70,3 +71,20 @@ Route::put('roles/{id}', [RoleController::class, 'update']);
 
 // delete role api
 Route::delete('roles/{id}', [RoleController::class, 'destroy']);
+
+// DEPARTMENT ROUTES
+
+//get all departments
+Route::get('departments', [DepartmentController::class, 'index']);
+
+//get single department
+Route::get('departments/{id}', [DepartmentController::class, 'show']);
+
+//post/ create department api
+Route::post('departments', [DepartmentController::class, 'store']);
+
+// update  department api
+Route::put('departments/{id}', [DepartmentController::class, 'update']);
+
+// delete department api
+Route::delete('departments/{id}', [DepartmentController::class, 'destroy']);
