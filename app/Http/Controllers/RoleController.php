@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\roleRepositoryInterface;
 use App\Models\Role;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
 
 class RoleController extends Controller
 {
+    // constructor
+    public function __construct(roleRepositoryInterface $roleRepository)
+
+    {
+        $this->roleRepository = $roleRepository;
+        // $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
+        $roles = $this->roleRepository->getAllRoles();
+        return response()->json($roles);
     }
 
     /**
@@ -36,6 +49,11 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
+        $roleDetails = $request->only([
+            "name",
+        ]);
+        $role = $this->roleRepository->createRole($roleDetails);
+        return response()->json($role);
     }
 
     /**
@@ -44,10 +62,13 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Request $request): JsonResponse
     {
         //
+        $role = $this->roleRepository->getRoleById($request->id);
+        return response()->json($role);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -67,9 +88,16 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request)
     {
         //
+        $roleDetails = $request->only([
+            "name",
+        ]);
+        $roldeId =
+            $request->route('id');
+        $role = $this->roleRepository->updateRole($roldeId, $roleDetails);
+        return response()->json($role);
     }
 
     /**
@@ -78,8 +106,11 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Request $request)
     {
         //
+        $roleDetails = $request->id;
+        $this->roleRepository->deleteRole($roleDetails);
+        return response()->json(['message' => 'Role deleted successfully']);
     }
 }
