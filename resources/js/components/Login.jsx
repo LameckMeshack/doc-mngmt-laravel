@@ -2,19 +2,6 @@ import axios from "axios";
 
 function Login() {
     // fetch data using axios
-    axios
-        .get("/api/users/1")
-        .then((response) => {
-            // handle success
-            console.log(response);
-        })
-        .catch((error) => {
-            // handle error
-            console.log(error);
-        })
-        .then(() => {
-            // always executed
-        });
 
     return (
         <div className="center-item">
