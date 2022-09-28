@@ -4,6 +4,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -88,3 +89,20 @@ Route::put('departments/{id}', [DepartmentController::class, 'update']);
 
 // delete department api
 Route::delete('departments/{id}', [DepartmentController::class, 'destroy']);
+
+// USER ROUTES
+
+//get all users
+Route::get('users', [UserController::class, 'index']);
+
+//get single user
+Route::get('users/{id}', [UserController::class, 'show']);
+
+//post/ create user api
+Route::post('users', [UserController::class, 'store']);
+
+// update  user api
+Route::put('users/{id}', [UserController::class, 'update']);
+
+// delete user api
+Route::delete('users/{id}', [UserController::class, 'destroy']);
