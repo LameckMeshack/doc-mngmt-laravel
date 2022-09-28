@@ -4,10 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use App\Interfaces\typeRepositoryInterface;
 use App\Models\Type;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
+
+    // constructor
+    public function __construct(typeRepositoryInterface $typeRepository)
+    {
+        $this->typeRepository = $typeRepository;
+        // $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +26,8 @@ class TypeController extends Controller
     public function index()
     {
         //
+        $types = $this->typeRepository->getAllTypes();
+        return response()->json($types);
     }
 
     /**
@@ -34,9 +46,15 @@ class TypeController extends Controller
      * @param  \App\Http\Requests\StoreTypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTypeRequest $request)
+    // public function store(StoreTypeRequest $request)
+    public function store(Request $request)
     {
         //
+        $typeDetails = $request->only([
+            "name",
+        ]);
+        $type = $this->typeRepository->createType($typeDetails);
+        return response()->json($type);
     }
 
     /**
@@ -45,10 +63,14 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Type $type)
+    public function show(Request $request): JsonResponse
     {
         //
+        $typeId = $request->route('id');
+        $type = $this->typeRepository->getTypeById($typeId);
+        return response()->json($type);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -68,9 +90,15 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTypeRequest $request, Type $type)
+    public function update(Request $request)
     {
         //
+        $typeId = $request->route('id');
+        $typeDetails = $request->only([
+            "name",
+        ]);
+        $type = $this->typeRepository->updateType($typeId, $typeDetails);
+        return response()->json($type);
     }
 
     /**
@@ -79,8 +107,11 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(Request $request): JsonResponse
     {
         //
+        $typeId = $request->id;
+        $this->typeRepository->deleteType($typeId);
+        return response()->json(['message' => 'Type deleted successfully']);
     }
 }
