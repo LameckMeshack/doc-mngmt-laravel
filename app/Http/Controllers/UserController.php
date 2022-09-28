@@ -6,6 +6,7 @@ use App\Interfaces\userRepositoryInterface;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -78,5 +79,9 @@ class UserController extends Controller
         $user = $request->id;
         $this->userRepository->deleteUser($user);
         return response()->json(['message' => 'User deleted successfully']);
+    }
+    public function profile()
+    {
+        return view('profile', array('user' => Auth::user()));
     }
 }
