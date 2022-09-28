@@ -1,14 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header";
+import Home from "./Home";
+import Login from "./Login";
+import Register from "./Register";
 
 function App() {
     return (
         <BrowserRouter>
-            <div>
+            <React.Fragment>
                 <Header />
-            </div>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                </Routes>
+            </React.Fragment>
         </BrowserRouter>
     );
 }
