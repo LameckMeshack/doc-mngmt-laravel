@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreDocumentRequest;
-use App\Http\Requests\UpdateDocumentRequest;
+// use App\Http\Requests\StoreDocumentRequest;
+// use App\Http\Requests\UpdateDocumentRequest;
 use App\Interfaces\documentRepositoryInterface;
 use App\Models\Document;
 use Illuminate\Http\Request;
@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 
 class DocumentController extends Controller
 {
+    // private  documentRepositoryInterface $documentRepository;
     //constructor
     public function __construct(documentRepositoryInterface $documentRepository)
     {
@@ -103,7 +104,7 @@ class DocumentController extends Controller
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Document $document)
+    public function update(Request $request)
     {
         //
         $documentId = $request->route('id');
