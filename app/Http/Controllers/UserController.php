@@ -67,7 +67,6 @@ class UserController extends Controller
             'department_id',
             'role_id',
             'phone',
-            'email',
             'photo',
         ]);
         $type = $this->userRepository->updateUser($userId, $userDetails);
