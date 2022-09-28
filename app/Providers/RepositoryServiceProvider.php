@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Interfaces\documentRepositoryInterface;
+use App\Interfaces\roleRepositoryInterface;
 use App\Interfaces\typeRepositoryInterface;
 use App\Repositories\DocumentRepository;
+use App\Repositories\RolesRepository;
 use App\Repositories\TypeRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +28,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             typeRepositoryInterface::class,
             TypeRepository::class
+        );
+
+        //Role
+        $this->app->bind(
+            roleRepositoryInterface::class,
+            RolesRepository::class
         );
     }
 
