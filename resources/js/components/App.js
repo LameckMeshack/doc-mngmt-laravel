@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import Header from "./Header";
 
 function App() {
     return (
-        <div className="">
-            <h1>This is firsre cts</h1>
-        </div>
+        <BrowserRouter>
+            <div>
+                <Header />
+            </div>
+        </BrowserRouter>
     );
 }
 
