@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//User Profil
-Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// //User Profil
+// Route::get('/profile', [UserController::class, 'profile'])->name('profile');
