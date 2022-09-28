@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -53,4 +54,19 @@ Route::put('types/{id}', [TypeController::class, 'update']);
 // delete type api
 Route::delete('types/{id}', [TypeController::class, 'destroy']);
 
-// DEPARTMENT ROUTES
+// ROLES ROUTES
+
+//get all roles
+Route::get('roles', [RoleController::class, 'index']);
+
+//get single role
+Route::get('roles/{id}', [RoleController::class, 'show']);
+
+//post/ create role api
+Route::post('roles', [RoleController::class, 'store']);
+
+// update  role api
+Route::put('roles/{id}', [RoleController::class, 'update']);
+
+// delete role api
+Route::delete('roles/{id}', [RoleController::class, 'destroy']);
