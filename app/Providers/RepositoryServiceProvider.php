@@ -6,10 +6,12 @@ use App\Interfaces\departmentRepositoryInterface;
 use App\Interfaces\documentRepositoryInterface;
 use App\Interfaces\roleRepositoryInterface;
 use App\Interfaces\typeRepositoryInterface;
+use App\Interfaces\userRepositoryInterface;
 use App\Repositories\DepartmentRepository;
 use App\Repositories\DocumentRepository;
 use App\Repositories\RolesRepository;
 use App\Repositories\TypeRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -42,6 +44,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             departmentRepositoryInterface::class,
             DepartmentRepository::class
+        );
+
+        //User
+        $this->app->bind(
+            userRepositoryInterface::class,
+            UserRepository::class
         );
     }
 
