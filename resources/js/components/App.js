@@ -5,6 +5,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import Navbar from "./Navbar";
+import { Provider } from "react-redux";
+import store from "../store/store";
 
 function App() {
     return (
@@ -24,8 +26,11 @@ export default App;
 if (document.getElementById("app")) {
     ReactDOM.render(
         <BrowserRouter>
-            <App />
+            <Provider store={store}>
+                <App />
+            </Provider>
         </BrowserRouter>,
+
         document.getElementById("app")
     );
 }
