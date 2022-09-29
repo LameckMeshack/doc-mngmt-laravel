@@ -172,7 +172,10 @@ function Register() {
                         >
                             <option value="">Select Department</option>
                             {departments.map((department) => (
-                                <option value={department.id}>
+                                <option
+                                    key={department.id}
+                                    value={department.id}
+                                >
                                     {department.name}
                                 </option>
                             ))}
@@ -192,7 +195,9 @@ function Register() {
                         >
                             <option value="">Select Role</option>
                             {roles.map((role) => (
-                                <option value={role.id}>{role.name}</option>
+                                <option key={role.id} value={role.id}>
+                                    {role.name}
+                                </option>
                             ))}
                         </select>
                     </div>
