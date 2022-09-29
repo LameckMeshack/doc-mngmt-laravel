@@ -3,20 +3,19 @@
     max-width: 70%;
     margin: 0 auto;
     padding: 20px;
-    // background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     box-shadow: 1px 0 10px 15px rgba(0, 0, 0, 0.3);
     margin-top: 20px;
-
-    // .text-center {
-    //     margin-bottom: 0px;
-    //     a {
-    //         text-align: center;
-    //         text-decoration: none;
-    //         color: $maincolor;
-    //         padding-left: 3px;
-    //         &:hover {
-    //             text-decoration: none;
-    //         }
-    //     }
-    // }
+    form {
+        width: 50%;
+        .row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
 }
