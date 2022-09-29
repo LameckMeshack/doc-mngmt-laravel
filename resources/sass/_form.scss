@@ -1,0 +1,41 @@
+.form-group {
+    margin-bottom: 20px;
+    width: 50%;
+}
+// styling form label
+label {
+    font-size: 18px;
+    font-weight: 600;
+    color: $textcolor2;
+    margin-right: 5px;
+}
+input {
+    padding: 10px;
+    outline: none;
+    margin: auto;
+}
+//styling select field
+select {
+    width: 50%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    background-color: #ecf0f1;
+    line-height: 2;
+    font-size: 16px;
+}
+
+.btn {
+    background-color: #4834d4;
+    color: $textcolor;
+    font-size: 18px;
+    width: 50%;
+    outline: none;
+    border: none;
+    padding: 15px;
+    margin: auto;
+    cursor: pointer;
+    &:hover {
+        background-color: #686de0;
+    }
+}
