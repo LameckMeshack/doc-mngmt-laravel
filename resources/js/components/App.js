@@ -8,21 +8,24 @@ import Register from "./Register";
 
 function App() {
     return (
-        <BrowserRouter>
-            <React.Fragment>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                </Routes>
-            </React.Fragment>
-        </BrowserRouter>
+        <>
+            <Header />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+            </Routes>
+        </>
     );
 }
 
 export default App;
 
 if (document.getElementById("app")) {
-    ReactDOM.render(<App />, document.getElementById("app"));
+    ReactDOM.render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>,
+        document.getElementById("app")
+    );
 }
