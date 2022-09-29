@@ -12,10 +12,14 @@ function Login() {
     const handleLogin = (e) => {
         e.preventDefault();
         axios
-            .post("/api/login", loginData)
+            .post("/api/user-login", loginData)
             .then((res) => {
                 console.log(res);
-                // console.log(loginData);
+                if (res.data.status === 200) {
+                    console.log(res.data.message);
+                } else {
+                    setError(res.data.message);
+                }
             })
             .catch((err) => {
                 setError(err.response.data.message);
