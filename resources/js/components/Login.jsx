@@ -63,9 +63,11 @@ function Login() {
                         }
                     />
                 </div>
-                <button type="submit" className="btn ">
-                    Login
-                </button>
+                <div className="form-group">
+                    <button className="btn" type="submit">
+                        Login
+                    </button>
+                </div>
             </form>
         </div>
     );
