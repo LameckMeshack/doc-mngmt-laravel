@@ -2,18 +2,31 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Register() {
+    const [departments, setDepartments] = useState([]);
+    const [roles, setRoles] = useState([]);
     const [userRegDetails, setuserRegDetails] = useState({
         name: "",
         email: "",
         password: "",
-        password_confirmation: "",
+        // password_confirmation: "",
         department: "",
         role: "",
         phone: "",
         photo: "",
     });
-    const [departments, setDepartments] = useState([]);
-    const [roles, setRoles] = useState([]);
+    // handle register
+    const handleRegister = (e) => {
+        e.preventDefault();
+        axios
+            .post("/api/register", userRegDetails)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     //fetch department
     const fetchDepartments = () => {
         axios
@@ -52,33 +65,91 @@ function Register() {
         fetctRoles();
     }, []);
 
+    console.log(userRegDetails);
+
     return (
         <div className="register">
-            <form action=" ">
+            <form onSubmit={handleRegister} action=" ">
                 <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" placeholder="name" />
+                    <label htmlFor="name">Name</label> <br />
+                    <input
+                        type="text"
+                        placeholder="name"
+                        onChange={(e) =>
+                            setuserRegDetails({
+                                ...userRegDetails,
+                                name: e.target.value,
+                            })
+                        }
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="text" placeholder="name" />
+                    <label htmlFor="email">Email</label> <br />
+                    <input
+                        type="text"
+                        placeholder="email@example.com"
+                        onChange={(e) =>
+                            setuserRegDetails({
+                                ...userRegDetails,
+                                email: e.target.value,
+                            })
+                        }
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="password" />
+                    <label htmlFor="password">Password</label> <br />
+                    <input
+                        type="password"
+                        placeholder="password"
+                        onChange={(e) =>
+                            setuserRegDetails({
+                                ...userRegDetails,
+                                password: e.target.value,
+                            })
+                        }
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="Confirm password">Confirm Password</label>
-                    <input type="password" placeholder=" Confirm password" />
+                    <label htmlFor="Confirm password">Confirm Password</label>{" "}
+                    <br />
+                    <input
+                        type="password"
+                        placeholder=" Confirm password"
+                        onChange={(e) =>
+                            setuserRegDetails({
+                                ...userRegDetails,
+                                password_confirmation: e.target.value,
+                            })
+                        }
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="phone">Phone</label>
-                    <input type="tel" placeholder="name" />
+                    <label htmlFor="phone">Phone</label> <br />
+                    <input
+                        type="tel"
+                        placeholder="07****"
+                        onChange={(e) =>
+                            setuserRegDetails({
+                                ...userRegDetails,
+                                phone: e.target.value,
+                            })
+                        }
+                    />
                 </div>
-                {/* form group for select */}
+                {/* form group for select with onChange */}
+
                 <div className="form-group">
-                    <label htmlFor="department">Department</label>
-                    <select name="department" id="department">
+                    <label htmlFor="department">Department</label> <br />
+                    <select
+                        name="department"
+                        id="department"
+                        onChange={(e) =>
+                            setuserRegDetails({
+                                ...userRegDetails,
+                                department: e.target.value,
+                            })
+                        }
+                    >
                         <option value="">Select Department</option>
                         {departments.map((department) => (
                             <option value={department.id}>
@@ -88,8 +159,17 @@ function Register() {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="role">Role</label>
-                    <select name="role" id="role">
+                    <label htmlFor="role">Role</label> <br />
+                    <select
+                        name="role"
+                        id="role"
+                        onChange={(e) =>
+                            setuserRegDetails({
+                                ...userRegDetails,
+                                role: e.target.value,
+                            })
+                        }
+                    >
                         <option value="">Select Role</option>
                         {roles.map((role) => (
                             <option value={role.id}>{role.name}</option>
@@ -97,8 +177,17 @@ function Register() {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="photo">Photo</label>
-                    <input type="file" placeholder="name" />
+                    <label htmlFor="photo">Photo</label> <br />
+                    <input
+                        type="file"
+                        placeholder="file"
+                        onChange={(e) =>
+                            setuserRegDetails({
+                                ...userRegDetails,
+                                photo: e.target.value,
+                            })
+                        }
+                    />
                 </div>
                 <div className="form-group">
                     <button className="btn" type="submit">
