@@ -2,11 +2,12 @@
 // @import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-// @import "variables";
+@import "variables";
 
 // Bootstrap
 // @import "~bootstrap/scss/bootstrap";
-@import "./components/login.scss";
+// @import "./components/login.scss";
+@import "./components/register.scss";
 
 * {
     box-sizing: border-box;
