@@ -53,31 +53,58 @@ function Register() {
     }, []);
 
     return (
-        <div className="center-item">
-            <form>
-                <input type="text" placeholder="Enter username" />
-                <input type="email" placeholder="Enter email" />
-                <input type="password" placeholder="Enter password" />
-                <input type="password" placeholder="Confirm password" />
-                <input type="text" placeholder="phone" />
-                <input type="file" />
-
-                <select placeholder="Select Roles">
-                    {roles.map((role) => (
-                        <option value={role.id}>{role.name}</option>
-                    ))}
-                </select>
-
-                <select placeholder="Select Department">
-                    {departments.map((department) => (
-                        <option value={department.id}>{department.name}</option>
-                    ))}
-                </select>
-
-                <button type="button">Register</button>
-                <p>
-                    Have an Account ?<a href="#">Login!</a>
-                </p>
+        <div className="register">
+            <form action=" ">
+                <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input type="text" placeholder="name" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input type="text" placeholder="name" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" placeholder="password" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="Confirm password">Confirm Password</label>
+                    <input type="password" placeholder=" Confirm password" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="phone">Phone</label>
+                    <input type="tel" placeholder="name" />
+                </div>
+                {/* form group for select */}
+                <div className="form-group">
+                    <label htmlFor="department">Department</label>
+                    <select name="department" id="department">
+                        <option value="">Select Department</option>
+                        {departments.map((department) => (
+                            <option value={department.id}>
+                                {department.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="role">Role</label>
+                    <select name="role" id="role">
+                        <option value="">Select Role</option>
+                        {roles.map((role) => (
+                            <option value={role.id}>{role.name}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="photo">Photo</label>
+                    <input type="file" placeholder="name" />
+                </div>
+                <div className="form-group">
+                    <button className="btn" type="submit">
+                        Register
+                    </button>
+                </div>
             </form>
         </div>
     );
