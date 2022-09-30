@@ -28,17 +28,26 @@ class AuthController extends Controller
             'password' => 'required|string|confirmed|min:3',
             'password_confirmation' => 'required',
             'phone' => 'required|string|min:10',
-            // set default
-            'photo' => 'required|string',
+            // validate images
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'role_id' => 'required|integer',
             'department_id' => 'required|integer',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
+
+        // handling photo upload
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/profile');
+            $image->move($destinationPath, $name);
+        }
+
         $user = User::create(array_merge(
             $validator->validated(),
-            ['password' => bcrypt($request->password)]
+            ['password' => bcrypt($request->password), 'photo' => $name]
         ));
         return response()->json([
             'message' => 'User successfully registered',
