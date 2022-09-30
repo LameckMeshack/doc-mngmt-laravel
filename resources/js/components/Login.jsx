@@ -12,7 +12,7 @@ function Login() {
     const handleLogin = (e) => {
         e.preventDefault();
         axios
-            .post("/api/user-login", loginData)
+            .post("/api/login", loginData)
             .then((res) => {
                 console.log(res);
                 if (res.data.status === 200) {
