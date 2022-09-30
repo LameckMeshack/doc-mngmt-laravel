@@ -4,26 +4,51 @@ import { useEffect, useState } from "react";
 function Register() {
     const [departments, setDepartments] = useState([]);
     const [roles, setRoles] = useState([]);
+    const [error, setError] = useState("");
     const [userRegDetails, setuserRegDetails] = useState({
         name: "",
         email: "",
         password: "",
-        // password_confirmation: "",
-        department: "",
-        role: "",
+        password_confirmation: "",
+        department_id: "",
+        role_id: "",
         phone: "",
         photo: "",
     });
     // handle register
     const handleRegister = (e) => {
         e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("photo", userRegDetails.photo);
+        formData.append("name", userRegDetails.name);
+        formData.append("email", userRegDetails.email);
+        formData.append("password", userRegDetails.password);
+        formData.append(
+            "password_confirmation",
+            userRegDetails.password_confirmation
+        );
+        // change to department_id integer
+        // userRegDetails.department_id = parseInt(userRegDetails.department_id);
+        formData.append("department_id", userRegDetails.department_id);
+        // userRegDetails.role_id = parseInt(userRegDetails.role_id);
+        formData.append("role_id", userRegDetails.role_id);
+        formData.append("phone", userRegDetails.phone);
+        console.log(formData);
+
         axios
-            .post("/api/register", userRegDetails)
+            .post("/api/register", formData)
             .then((res) => {
                 console.log(res);
+                if (res.data.status === 200) {
+                    console.log(res.data.message);
+                } else {
+                    setError(res.data.message);
+                }
             })
             .catch((err) => {
-                console.log(err);
+                setError(err.response.data.message);
+                console.log(error);
             });
     };
 
@@ -48,7 +73,7 @@ function Register() {
             .get("/api/roles")
             .then((response) => {
                 // handle success
-                console.log(response.data);
+                // console.log(response.data);
                 setRoles(response.data);
             })
             .catch((error) => {
@@ -65,7 +90,7 @@ function Register() {
         fetctRoles();
     }, []);
 
-    console.log(userRegDetails);
+    // console.log(userRegDetails);
 
     return (
         <div className="register">
@@ -144,13 +169,14 @@ function Register() {
                         />
                     </div>
                     <div className="form-group see">
-                        <label htmlFor="phone">Photo</label> <br />
+                        <label htmlFor="photo">Photo</label> <br />
                         <input
                             type="file"
                             onChange={(e) =>
+                                // handling file
                                 setuserRegDetails({
                                     ...userRegDetails,
-                                    phone: e.target.value,
+                                    photo: e.target.files[0],
                                 })
                             }
                         />
@@ -161,12 +187,12 @@ function Register() {
                     <div className="form-group">
                         <label htmlFor="department">Department</label> <br />
                         <select
-                            name="department"
-                            id="department"
+                            name="department_id"
+                            id="department_id"
                             onChange={(e) =>
                                 setuserRegDetails({
                                     ...userRegDetails,
-                                    department: e.target.value,
+                                    department_id: e.target.value,
                                 })
                             }
                         >
@@ -184,12 +210,12 @@ function Register() {
                     <div className="form-group">
                         <label htmlFor="role">Role</label> <br />
                         <select
-                            name="role"
-                            id="role"
+                            name="role_id"
+                            id="role_id"
                             onChange={(e) =>
                                 setuserRegDetails({
                                     ...userRegDetails,
-                                    role: e.target.value,
+                                    role_id: e.target.value,
                                 })
                             }
                         >
