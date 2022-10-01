@@ -1,7 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../store/actions/authActions";
 
 function Login() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [loginData, setloginData] = useState({
         email: "",
         password: "",
@@ -11,27 +16,15 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        axios
-            .post("/api/login", loginData)
-            .then((res) => {
-                console.log(res);
-                if (res.data.status === 200) {
-                    console.log(res.data.message);
-                } else {
-                    setError(res.data.message);
-                }
-            })
-            .catch((err) => {
-                setError(err.response.data.message);
-                console.log(error);
-            });
+        dispatch(login(loginData.email, loginData.password));
+        console.log("action dispatched");
+        alert("You have successfully logged in");
+        navigate("/");
     };
 
-    if (error) {
-        alert(error);
-    }
-
-    //success message if login successful
+    // if (error) {
+    //     alert(error);
+    // }
 
     return (
         <div className="login">
