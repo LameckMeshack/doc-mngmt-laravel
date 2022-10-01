@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { AuthContext } from "../context/AuthContext";
@@ -14,7 +15,7 @@ function UploadFile() {
         department_id: "",
         user_id: user,
         type_id: "",
-        document: "",
+        file: "",
     });
     //getting user from the context
     // const { user } = useContext(AuthContext);
@@ -63,7 +64,7 @@ function UploadFile() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("document", documentDetails.document);
+        formData.append("file", documentDetails.file);
         formData.append("name", documentDetails.name);
         formData.append("access", documentDetails.access);
         formData.append("description", documentDetails.description);
@@ -71,7 +72,20 @@ function UploadFile() {
         formData.append("department_id", documentDetails.department_id);
         formData.append("type_id", documentDetails.type_id);
         // handle document
-        console.log(documentDetails);
+        // console.log(documentDetails);
+        axios
+            .post("/api/documents", formData)
+            .then((res) => {
+                console.log(res);
+                if (res.data.status === 200) {
+                    console.log(res.data.message);
+                } else {
+                    console.log(res.data.message);
+                }
+            })
+            .catch((err) => {
+                console.log("error", err.response.data);
+            });
     };
 
     return (
@@ -82,7 +96,7 @@ function UploadFile() {
                         <label htmlFor="name">Name</label> <br />
                         <input
                             type="text"
-                            placeholder="Firstname Lastname"
+                            placeholder="Document Name"
                             onChange={(e) =>
                                 setDocumentDetails({
                                     ...documentDetails,
@@ -136,7 +150,7 @@ function UploadFile() {
                                 // handling file
                                 setDocumentDetails({
                                     ...documentDetails,
-                                    document: e.target.files[0],
+                                    file: e.target.files[0],
                                 })
                             }
                         />
