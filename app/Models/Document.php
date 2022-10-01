@@ -13,6 +13,7 @@ class Document extends Model
         'name',
         'access',
         'description',
+        'file',
         'user_id',
         'department_id',
         'type_id',
