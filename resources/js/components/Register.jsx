@@ -28,10 +28,7 @@ function Register() {
             "password_confirmation",
             userRegDetails.password_confirmation
         );
-        // change to department_id integer
-        // userRegDetails.department_id = parseInt(userRegDetails.department_id);
         formData.append("department_id", userRegDetails.department_id);
-        // userRegDetails.role_id = parseInt(userRegDetails.role_id);
         formData.append("role_id", userRegDetails.role_id);
         formData.append("phone", userRegDetails.phone);
         console.log(formData);
@@ -44,11 +41,12 @@ function Register() {
                     console.log(res.data.message);
                 } else {
                     setError(res.data.message);
+                    alert(res.data.message);
                 }
             })
             .catch((err) => {
                 setError(err.response.data.message);
-                console.log(error);
+                console.log("error", err.response.data);
             });
     };
 
