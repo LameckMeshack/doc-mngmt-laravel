@@ -1,16 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { AuthContext } from "../context/AuthContext";
 
 function UploadFile() {
     const [types, setTypes] = useState([]);
     const [departments, setDepartments] = useState([]);
+    const user = useSelector((state) => state.userInfo.userInfo.user.id);
+    // console.log(user);
     const [documentDetails, setDocumentDetails] = useState({
         name: "",
         access: "",
         description: "",
         department_id: "",
+        user_id: user,
         type_id: "",
         document: "",
     });
+    //getting user from the context
+    // const { user } = useContext(AuthContext);
+    // console.log("user");
+    // console.log(user.user?.name);
+    // get user from the store
 
     //fetch department
     const fetchDepartments = () => {
@@ -57,6 +67,7 @@ function UploadFile() {
         formData.append("name", documentDetails.name);
         formData.append("access", documentDetails.access);
         formData.append("description", documentDetails.description);
+        formData.append("user_id", documentDetails.user_id);
         formData.append("department_id", documentDetails.department_id);
         formData.append("type_id", documentDetails.type_id);
         // handle document
