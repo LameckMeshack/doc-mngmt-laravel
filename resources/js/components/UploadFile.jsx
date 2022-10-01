@@ -9,7 +9,7 @@ function UploadFile() {
         description: "",
         department_id: "",
         type_id: "",
-        photo: "",
+        document: "",
     });
 
     //fetch department
@@ -53,13 +53,13 @@ function UploadFile() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("photo", documentDetails.photo);
+        formData.append("document", documentDetails.document);
         formData.append("name", documentDetails.name);
         formData.append("access", documentDetails.access);
         formData.append("description", documentDetails.description);
         formData.append("department_id", documentDetails.department_id);
         formData.append("type_id", documentDetails.type_id);
-        // handle photo
+        // handle document
         console.log(documentDetails);
     };
 
@@ -118,14 +118,14 @@ function UploadFile() {
                 </div>
                 <div className="row">
                     <div className="form-group see">
-                        <label htmlFor="photo">Photo</label> <br />
+                        <label htmlFor="document">Document</label> <br />
                         <input
                             type="file"
                             onChange={(e) =>
                                 // handling file
                                 setDocumentDetails({
                                     ...documentDetails,
-                                    photo: e.target.files[0],
+                                    document: e.target.files[0],
                                 })
                             }
                         />
