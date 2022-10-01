@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\RoleController;
@@ -23,86 +26,57 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// DOCUMENT ROUTES
-//get all document
-Route::get('documents', [DocumentController::class, 'index']);
 
-//get single document
-Route::get('documents/{id}', [DocumentController::class, 'show']);
+// Group user document routes
+Route::controller("DocumentController::class")->group(function () {
+    Route::get('documents', [DocumentController::class, 'index']);
+    Route::get('documents/{id}', [DocumentController::class, 'show']);
+    Route::post('documents', [DocumentController::class, 'store']);
+    Route::put('documents/{id}', [DocumentController::class, 'update']);
+    Route::delete('documents/{id}', [DocumentController::class, 'destroy']);
+});
 
-//post/ create document api
-Route::post('documents', [DocumentController::class, 'store']);
+//Group roles  routes
+Route::controller("RoleController::class")->group(function () {
+    Route::get('roles', [RoleController::class, 'index']);
+    Route::get('roles/{id}', [RoleController::class, 'show']);
+    Route::post('roles', [RoleController::class, 'store']);
+    Route::put('roles/{id}', [RoleController::class, 'update']);
+    Route::delete('roles/{id}', [RoleController::class, 'destroy']);
+});
 
-// update  document api
-Route::put('documents/{id}', [DocumentController::class, 'update']);
+//Group type routes
+Route::controller("TypeController::class")->group(function () {
+    Route::get('types', [TypeController::class, 'index']);
+    Route::get('types/{id}', [TypeController::class, 'show']);
+    Route::post('types', [TypeController::class, 'store']);
+    Route::put('types/{id}', [TypeController::class, 'update']);
+    Route::delete('types/{id}', [TypeController::class, 'destroy']);
+});
 
-// delete document api
-Route::delete('documents/{id}', [DocumentController::class, 'destroy']);
+//Group department routes
+Route::controller("DepartmentController::class")->group(function () {
+    Route::get('departments', [DepartmentController::class, 'index']);
+    Route::get('departments/{id}', [DepartmentController::class, 'show']);
+    Route::post('departments', [DepartmentController::class, 'store']);
+    Route::put('departments/{id}', [DepartmentController::class, 'update']);
+    Route::delete('departments/{id}', [DepartmentController::class, 'destroy']);
+});
 
-// TYPE ROUTES
+//Group user routes
+Route::controller("UserController::class")->group(function () {
+    Route::get('users', [UserController::class, 'index']);
+    Route::get('users/{id}', [UserController::class, 'show']);
+    Route::post('users', [UserController::class, 'store']);
+    Route::put('users/{id}', [UserController::class, 'update']);
+    Route::delete('users/{id}', [UserController::class, 'destroy']);
+});
 
-//get all types
-Route::get('types', [TypeController::class, 'index']);
 
-//get single type
-Route::get('types/{id}', [TypeController::class, 'show']);
-
-//post/ create type api
-Route::post('types', [TypeController::class, 'store']);
-
-// update  type api
-Route::put('types/{id}', [TypeController::class, 'update']);
-
-// delete type api
-Route::delete('types/{id}', [TypeController::class, 'destroy']);
-
-// ROLES ROUTES
-
-//get all roles
-Route::get('roles', [RoleController::class, 'index']);
-
-//get single role
-Route::get('roles/{id}', [RoleController::class, 'show']);
-
-//post/ create role api
-Route::post('roles', [RoleController::class, 'store']);
-
-// update  role api
-Route::put('roles/{id}', [RoleController::class, 'update']);
-
-// delete role api
-Route::delete('roles/{id}', [RoleController::class, 'destroy']);
-
-// DEPARTMENT ROUTES
-
-//get all departments
-Route::get('departments', [DepartmentController::class, 'index']);
-
-//get single department
-Route::get('departments/{id}', [DepartmentController::class, 'show']);
-
-//post/ create department api
-Route::post('departments', [DepartmentController::class, 'store']);
-
-// update  department api
-Route::put('departments/{id}', [DepartmentController::class, 'update']);
-
-// delete department api
-Route::delete('departments/{id}', [DepartmentController::class, 'destroy']);
-
-// USER ROUTES
-
-//get all users
-Route::get('users', [UserController::class, 'index']);
-
-//get single user
-Route::get('users/{id}', [UserController::class, 'show']);
-
-//post/ create user api
-Route::post('users', [UserController::class, 'store']);
-
-// update  user api
-Route::put('users/{id}', [UserController::class, 'update']);
-
-// delete user api
-Route::delete('users/{id}', [UserController::class, 'destroy']);
+// Auth and Registration controllers
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+});
