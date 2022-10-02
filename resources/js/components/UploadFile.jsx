@@ -90,124 +90,128 @@ function UploadFile() {
 
     return (
         <>
-            <form onSubmit={handleSubmit} action=" ">
-                <div className="row">
-                    <div className="form-group">
-                        <label htmlFor="name">Name</label> <br />
-                        <input
-                            type="text"
-                            placeholder="Document Name"
-                            onChange={(e) =>
-                                setDocumentDetails({
-                                    ...documentDetails,
-                                    name: e.target.value,
-                                })
-                            }
-                        />
+            <div className="container">
+                <h1>Upload Document</h1>
+                <form onSubmit={handleSubmit} action=" ">
+                    <div className="row">
+                        <div className="form-group">
+                            <label htmlFor="name">Name</label> <br />
+                            <input
+                                type="text"
+                                placeholder="Document Name"
+                                onChange={(e) =>
+                                    setDocumentDetails({
+                                        ...documentDetails,
+                                        name: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="access">Access</label> <br />
+                            <select
+                                name="access"
+                                id="access"
+                                onChange={(e) =>
+                                    setDocumentDetails({
+                                        ...documentDetails,
+                                        access: e.target.value,
+                                    })
+                                }
+                            >
+                                <option value="">Select Access</option>>{" "}
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="access">Access</label> <br />
-                        <select
-                            name="access"
-                            id="access"
-                            onChange={(e) =>
-                                setDocumentDetails({
-                                    ...documentDetails,
-                                    access: e.target.value,
-                                })
-                            }
-                        >
-                            <option value="">Select Access</option>>{" "}
-                            <option value="public">Public</option>
-                            <option value="private">Private</option>
-                        </select>
+                    <div className="row">
+                        <div className="form-group">
+                            <label htmlFor="password">Description</label> <br />
+                            <textarea
+                                name="description"
+                                id="description"
+                                cols="30"
+                                rows="10"
+                                placeholder="Enter the files accurate description"
+                                onChange={(e) =>
+                                    setDocumentDetails({
+                                        ...documentDetails,
+                                        description: e.target.value,
+                                    })
+                                }
+                            ></textarea>
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="form-group">
-                        <label htmlFor="password">Description</label> <br />
-                        <textarea
-                            name="description"
-                            id="description"
-                            cols="30"
-                            rows="10"
-                            placeholder="Enter the files accurate description"
-                            onChange={(e) =>
-                                setDocumentDetails({
-                                    ...documentDetails,
-                                    description: e.target.value,
-                                })
-                            }
-                        ></textarea>
+                    <div className="row">
+                        <div className="form-group see">
+                            <label htmlFor="document">Document</label> <br />
+                            <input
+                                type="file"
+                                onChange={(e) =>
+                                    // handling file
+                                    setDocumentDetails({
+                                        ...documentDetails,
+                                        file: e.target.files[0],
+                                    })
+                                }
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="form-group see">
-                        <label htmlFor="document">Document</label> <br />
-                        <input
-                            type="file"
-                            onChange={(e) =>
-                                // handling file
-                                setDocumentDetails({
-                                    ...documentDetails,
-                                    file: e.target.files[0],
-                                })
-                            }
-                        />
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="form-group">
-                        <label htmlFor="department">Department</label> <br />
-                        <select
-                            name="department_id"
-                            id="department_id"
-                            onChange={(e) =>
-                                setDocumentDetails({
-                                    ...documentDetails,
-                                    department_id: e.target.value,
-                                })
-                            }
-                        >
-                            <option value="">Select Department</option>
-                            {departments.map((department) => (
-                                <option
-                                    key={department.id}
-                                    value={department.id}
-                                >
-                                    {department.name}
-                                </option>
-                            ))}
-                        </select>
+                    <div className="row">
+                        <div className="form-group">
+                            <label htmlFor="department">Department</label>{" "}
+                            <br />
+                            <select
+                                name="department_id"
+                                id="department_id"
+                                onChange={(e) =>
+                                    setDocumentDetails({
+                                        ...documentDetails,
+                                        department_id: e.target.value,
+                                    })
+                                }
+                            >
+                                <option value="">Select Department</option>
+                                {departments.map((department) => (
+                                    <option
+                                        key={department.id}
+                                        value={department.id}
+                                    >
+                                        {department.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="type">Type</label> <br />
+                            <select
+                                name="type_id"
+                                id="type_id"
+                                onChange={(e) =>
+                                    setDocumentDetails({
+                                        ...documentDetails,
+                                        type_id: e.target.value,
+                                    })
+                                }
+                            >
+                                <option value="">Select Type</option>
+                                {types.map((type) => (
+                                    <option key={type.id} value={type.id}>
+                                        {type.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="type">Type</label> <br />
-                        <select
-                            name="type_id"
-                            id="type_id"
-                            onChange={(e) =>
-                                setDocumentDetails({
-                                    ...documentDetails,
-                                    type_id: e.target.value,
-                                })
-                            }
-                        >
-                            <option value="">Select Type</option>
-                            {types.map((type) => (
-                                <option key={type.id} value={type.id}>
-                                    {type.name}
-                                </option>
-                            ))}
-                        </select>
+                        <button className="btn" type="submit">
+                            Upload
+                        </button>
                     </div>
-                </div>
-                <div className="form-group">
-                    <button className="btn" type="submit">
-                        Upload
-                    </button>
-                </div>
-            </form>
+                </form>
+            </div>
         </>
     );
 }
