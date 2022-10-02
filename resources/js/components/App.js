@@ -7,6 +7,7 @@ import Register from "./Register";
 import Navbar from "./Navbar";
 import { Provider } from "react-redux";
 import store from "../store/store";
+import { AuthProvider } from "../context/AuthContext";
 
 function App() {
     return (
@@ -27,7 +28,9 @@ if (document.getElementById("app")) {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
-                <App />
+                <AuthProvider>
+                    <App />
+                </AuthProvider>
             </Provider>
         </BrowserRouter>,
 
