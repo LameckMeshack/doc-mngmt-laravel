@@ -18,7 +18,7 @@ function Login() {
         e.preventDefault();
         dispatch(login(loginData.email, loginData.password));
         console.log("action dispatched");
-        alert("You have successfully logged in");
+        // alert("You have successfully logged in");
         navigate("/");
     };
 
@@ -27,45 +27,48 @@ function Login() {
     // }
 
     return (
-        <div className="login">
-            <form onSubmit={handleLogin} className="">
-                <div className="form-group">
-                    <label htmlFor="email" required>
-                        Email
-                    </label>
-                    <br />
-                    <input
-                        type="text"
-                        placeholder="name"
-                        onChange={(e) =>
-                            setloginData({
-                                ...loginData,
-                                email: e.target.value,
-                            })
-                        }
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label> <br />
-                    <input
-                        type="password"
-                        required
-                        placeholder="password"
-                        // setOnchange
-                        onChange={(e) =>
-                            setloginData({
-                                ...loginData,
-                                password: e.target.value,
-                            })
-                        }
-                    />
-                </div>
-                <div className="form-group">
-                    <button className="btn" type="submit">
-                        Login
-                    </button>
-                </div>
-            </form>
+        <div className="container">
+            <h1>Login</h1>
+            <div className="login">
+                <form onSubmit={handleLogin} className="">
+                    <div className="form-group">
+                        <label htmlFor="email" required>
+                            Email
+                        </label>
+                        <br />
+                        <input
+                            type="text"
+                            placeholder="name"
+                            onChange={(e) =>
+                                setloginData({
+                                    ...loginData,
+                                    email: e.target.value,
+                                })
+                            }
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label> <br />
+                        <input
+                            type="password"
+                            required
+                            placeholder="password"
+                            // setOnchange
+                            onChange={(e) =>
+                                setloginData({
+                                    ...loginData,
+                                    password: e.target.value,
+                                })
+                            }
+                        />
+                    </div>
+                    <div className="form-group">
+                        <button className="btn" type="submit">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
