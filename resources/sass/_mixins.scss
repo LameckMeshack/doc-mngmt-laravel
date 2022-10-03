@@ -1,0 +1,29 @@
+@mixin flex-config(
+    $justify-content: false,
+    $flex: false,
+    $flex-direction: false,
+    $align-items: false
+) {
+    display: flex;
+
+    @if $justify-content != false {
+        justify-content: $justify-content;
+    }
+
+    @if $flex != false {
+        flex: $flex;
+    }
+
+    @if $flex-direction != false {
+        flex-direction: $flex-direction;
+    }
+
+    @if $align-items != false {
+        align-items: $align-items;
+    }
+}
+
+@mixin rectangle($width, $height) {
+    width: $width;
+    height: $height;
+}
