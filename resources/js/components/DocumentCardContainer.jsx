@@ -12,7 +12,7 @@ function DocumentCardContainer() {
     }, [dispacth]);
     return (
         <div className="document-card-container">
-            <h1>Document Card Container</h1>
+            <h1>Files</h1>
             <div className="cards-container">
                 {documents.map((document) => (
                     <DocumentCard
