@@ -10,6 +10,7 @@ function UploadFile() {
     const [departments, setDepartments] = useState([]);
 
     const user = useSelector((state) => state.userInfo.userInfo.user.id);
+
     // console.log(user);
     const [documentDetails, setDocumentDetails] = useState({
         name: "",
@@ -18,7 +19,7 @@ function UploadFile() {
         department_id: "",
         user_id: user,
         type_id: "",
-        file: "",
+        file: null,
     });
     //getting user from the context
     // const { user } = useContext(AuthContext);
@@ -77,8 +78,10 @@ function UploadFile() {
         // dispatching redux  create document action
         dispatch(createDocument(formData));
         console.log(documentDetails);
-
-        // clear form field and reset state
+        //clearForm
+        clearForm();
+    };
+    const clearForm = () => {
         setDocumentDetails({
             name: "",
             access: "",
@@ -88,9 +91,9 @@ function UploadFile() {
             type_id: "",
             file: "",
         });
-        console.log(documentDetails);
     };
 
+    useEffect(() => {}, []);
     return (
         <>
             <div className="container">
@@ -157,7 +160,7 @@ function UploadFile() {
                             <label htmlFor="document">Document</label> <br />
                             <input
                                 type="file"
-                                value={documentDetails.file}
+                                // value={documentDetails.file}
                                 onChange={(e) =>
                                     setDocumentDetails({
                                         ...documentDetails,
