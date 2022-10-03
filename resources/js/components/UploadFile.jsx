@@ -74,8 +74,21 @@ function UploadFile() {
         formData.append("user_id", documentDetails.user_id);
         formData.append("department_id", documentDetails.department_id);
         formData.append("type_id", documentDetails.type_id);
-
+        // dispatching redux  create document action
         dispatch(createDocument(formData));
+        console.log(documentDetails);
+
+        // clear form field and reset state
+        setDocumentDetails({
+            name: "",
+            access: "",
+            description: "",
+            department_id: "",
+            user_id: user,
+            type_id: "",
+            file: "",
+        });
+        console.log(documentDetails);
     };
 
     return (
@@ -88,6 +101,8 @@ function UploadFile() {
                             <label htmlFor="name">Name</label> <br />
                             <input
                                 type="text"
+                                required
+                                value={documentDetails.name}
                                 placeholder="Document Name"
                                 onChange={(e) =>
                                     setDocumentDetails({
@@ -102,6 +117,8 @@ function UploadFile() {
                             <select
                                 name="access"
                                 id="access"
+                                value={documentDetails.access}
+                                required
                                 onChange={(e) =>
                                     setDocumentDetails({
                                         ...documentDetails,
@@ -121,6 +138,8 @@ function UploadFile() {
                             <textarea
                                 name="description"
                                 id="description"
+                                required
+                                value={documentDetails.description}
                                 cols="30"
                                 rows="10"
                                 placeholder="Enter the files accurate description"
@@ -138,8 +157,8 @@ function UploadFile() {
                             <label htmlFor="document">Document</label> <br />
                             <input
                                 type="file"
+                                value={documentDetails.file}
                                 onChange={(e) =>
-                                    // handling file
                                     setDocumentDetails({
                                         ...documentDetails,
                                         file: e.target.files[0],
@@ -156,6 +175,7 @@ function UploadFile() {
                             <select
                                 name="department_id"
                                 id="department_id"
+                                value={documentDetails.department_id}
                                 onChange={(e) =>
                                     setDocumentDetails({
                                         ...documentDetails,
@@ -179,6 +199,7 @@ function UploadFile() {
                             <select
                                 name="type_id"
                                 id="type_id"
+                                value={documentDetails.type_id}
                                 onChange={(e) =>
                                     setDocumentDetails({
                                         ...documentDetails,
