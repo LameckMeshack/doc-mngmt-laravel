@@ -40,6 +40,11 @@ export default function Navbar() {
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink className="a" to="upload">
+                                Create File
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink className="a" to="departments">
                                 Dept and
                             </NavLink>
