@@ -61,3 +61,24 @@ export const getDocument = (id) => async (dispatch) => {
         });
     }
 };
+
+export const updateDocument = (id, documentDetails) => async (dispatch) => {
+    try {
+        const { data } = await axios.put(
+            `/api/documents/${id}`,
+            documentDetails
+        );
+        dispatch({
+            type: UPDATE_DOCUMENT,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: DOCACTIONFAILED,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
