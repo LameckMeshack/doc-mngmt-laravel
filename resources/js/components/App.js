@@ -9,6 +9,9 @@ import { Provider } from "react-redux";
 import store from "../store/store";
 import { AuthProvider } from "../context/AuthContext";
 import UploadFile from "./UploadFile";
+import DocumentCardContainer from "./DocumentCardContainer";
+import Departments from "./Department";
+import SpecificDeptCardContainer from "./SpecificDeptCardContainer";
 
 function App() {
     return (
@@ -19,6 +22,12 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/upload" element={<UploadFile />} />
+                <Route path="/documents" element={<DocumentCardContainer />} />
+                <Route path="/departments" element={<Departments />} />
+                <Route
+                    path="/department/:id"
+                    element={<SpecificDeptCardContainer />}
+                />
             </Routes>
         </>
     );
