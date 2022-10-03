@@ -17,14 +17,9 @@ function Login() {
     const handleLogin = (e) => {
         e.preventDefault();
         dispatch(login(loginData.email, loginData.password));
-        console.log("action dispatched");
-        // alert("You have successfully logged in");
         navigate("/");
+        // reload
     };
-
-    // if (error) {
-    //     alert(error);
-    // }
 
     return (
         <div className="container">
