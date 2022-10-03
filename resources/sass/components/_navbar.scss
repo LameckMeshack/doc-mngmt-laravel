@@ -2,8 +2,9 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: 60px;
-    width: 100%;
+    // height: 60px;
+    // width: 100%;
+    @include rectangle(100%, 60px);
     padding: 0.5rem 0rem;
     background-color: #fff;
     color: black;
@@ -36,8 +37,7 @@
 
 .hamburger {
     border: 0;
-    height: 40px;
-    width: 40px;
+    @include rectangle(40px, 40px);
     padding: 0.5rem;
     border-radius: 50%;
     background-color: #283b8b;
@@ -66,6 +66,7 @@
         left: 0;
         width: 100%;
         height: calc(100vh - 60px);
+        @include rectangle(100vh, calc(100vh - 60px));
         background-color: white;
         border-top: 1px solid black;
         display: none;
