@@ -5,7 +5,6 @@ import DocumentCard from "./DocumentCard";
 
 function DocumentCardContainer() {
     const { documents } = useSelector((state) => state.documents);
-    // console.log(documents);
 
     const dispacth = useDispatch();
     useEffect(() => {
