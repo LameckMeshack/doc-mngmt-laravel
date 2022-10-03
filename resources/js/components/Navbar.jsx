@@ -10,12 +10,10 @@ export default function Navbar() {
     //get user from the context
     const { user } = useContext(AuthContext);
 
-    console.log(user?.user);
-
     return (
         <nav className="navigation">
             <NavLink to="/" className="brand-name">
-                CYTONN DOCUMENT MANAGEMENT SYSTEM
+                <h3>CYTONN DOCUMENT MANAGEMENT SYSTEM</h3>
             </NavLink>
             <button
                 className="hamburger"
