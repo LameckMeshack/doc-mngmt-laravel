@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { logout } from "../store/actions/authActions";
@@ -13,7 +14,7 @@ export default function Navbar() {
     return (
         <nav className="navigation">
             <NavLink to="/" className="brand-name">
-                <h3>CYTONN DOCUMENT MANAGEMENT SYSTEM</h3>
+                <h4> DOCUMENT MANAGEMENT </h4>
             </NavLink>
             <button
                 className="hamburger"
@@ -21,7 +22,7 @@ export default function Navbar() {
                     setIsNavExpanded(!isNavExpanded);
                 }}
             >
-                {/* hamburger svg code... */}
+                <GiHamburgerMenu />
             </button>
             <div
                 className={
@@ -34,22 +35,36 @@ export default function Navbar() {
                 {user?.user ? (
                     <ul>
                         <li>
-                            <NavLink to="documents">Documents</NavLink>
+                            <NavLink className="a" to="documents">
+                                Documents
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to="departments">Departments</NavLink>
+                            <NavLink className="a" to="departments">
+                                Dept and
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink onClick={dispatch(logout)}>Logout</NavLink>
+                            <NavLink className="a" onClick={dispatch(logout)}>
+                                Logout
+                            </NavLink>
                         </li>
                     </ul>
                 ) : (
                     <ul>
                         <li>
-                            <NavLink to="login">Login</NavLink>
+                            <NavLink
+                                // onClick={setIsNavExpanded(!isNavExpanded)}
+                                className="a"
+                                to="login"
+                            >
+                                Login
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to="register">Register</NavLink>
+                            <NavLink className="a" to="register">
+                                Register
+                            </NavLink>
                         </li>
                     </ul>
                 )}
