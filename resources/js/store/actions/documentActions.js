@@ -82,3 +82,21 @@ export const updateDocument = (id, documentDetails) => async (dispatch) => {
         });
     }
 };
+
+export const deleteDocument = (id) => async (dispatch) => {
+    try {
+        await axios.delete(`/api/documents/${id}`);
+        dispatch({
+            type: DELETE_DOCUMENT,
+            payload: id,
+        });
+    } catch (error) {
+        dispatch({
+            type: DOCACTIONFAILED,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
