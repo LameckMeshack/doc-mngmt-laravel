@@ -8,7 +8,7 @@
     // justify-content: center;
     // align-items: center;
     @include flex-config(center, 1, row, center);
-    box-shadow: 1px 0 10px 15px rgba(0, 0, 0, 0.3);
+    // box-shadow: 1px 0 10px 15px rgba(0, 0, 0, 0.3);
     margin-top: 20px;
     form {
         width: max-content;
@@ -17,7 +17,19 @@
             // flex-direction: row;
             // justify-content: space-between;
             // align-items: center;
+
             @include flex-config(space-between, 1, row, center);
+        }
+    }
+}
+
+// media-query for row
+@include media(phone) {
+    .register,
+    .login {
+        max-width: 100%;
+        .row {
+            flex-direction: column;
         }
     }
 }
