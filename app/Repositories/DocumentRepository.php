@@ -5,12 +5,13 @@ namespace App\Repositories;
 use App\Interfaces\documentRepositoryInterface;
 use App\Models\Document;
 
+
 class DocumentRepository implements documentRepositoryInterface
 {
 
     public function getAllDocuments()
     {
-        return Document::all();
+        return Document::with('department')->get();
     }
 
     public function getDocumentById($documentId)
