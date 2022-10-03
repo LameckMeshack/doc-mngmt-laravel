@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDocuments } from "../store/actions/documentActions";
 import DocumentCard from "./DocumentCard";
+import { saveAs } from "file-saver";
 
 function SpecificDeptCardContainer() {
     const { documents } = useSelector((state) => state.documents);
@@ -25,6 +26,11 @@ function SpecificDeptCardContainer() {
     useEffect(() => {
         dispacth(getDocuments());
     }, [dispacth]);
+
+    const saveFile = () => {
+        // saveAs(`public/uploads/documents/${document.file}`, document.name);
+    };
+
     return (
         //    if filterfDocuments is empty return a message else return the filtered documents
         <div className="container">
@@ -43,6 +49,17 @@ function SpecificDeptCardContainer() {
                                     department={doc.department.name}
                                 />
                             ))}
+                            <button
+                                onClick={(e) =>
+                                    saveAs(
+                                        `public/uploads/documents/1664826981.docx`,
+                                        "Trial1.docx"
+                                    )
+                                }
+                            >
+                                download
+                            </button>
+                            {/* //download button */}
                         </div>
                     </div>
                 </div>
