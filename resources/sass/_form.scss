@@ -43,14 +43,14 @@
     }
 }
 
-@include media(phone) {
-    .form-group {
-        label {
-            font-size: 16px;
-            font-weight: normal;
-        }
-        input {
-            padding: 8px;
-        }
-    }
-}
+// @include media(phone) {
+//     .form-group {
+//         label {
+//             font-size: 16px;
+//             font-weight: normal;
+//         }
+//         input {
+//             padding: 8px;
+//         }
+//     }
+// }

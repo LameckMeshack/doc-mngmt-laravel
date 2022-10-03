@@ -1,9 +1,10 @@
 .document-card {
-    display: flex;
-    flex-direction: row;
+    // display: flex;
+    // flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    // justify-content: space-between;
+    // align-items: center;
+    @include flex-config(space-between, 1, row, center);
     align-content: center;
     padding: 1rem;
     // margin: 1rem;
@@ -13,10 +14,11 @@
     max-width: 200px;
 
     &-right {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        // align-items: center;
+        @include flex-config(space-between, 1, column, center);
     }
     &-left {
         font-size: 45px;

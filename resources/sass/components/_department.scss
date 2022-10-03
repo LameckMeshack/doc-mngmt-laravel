@@ -1,0 +1,50 @@
+.departments {
+    @include flex-config(center, 1, column, center);
+    @include rectangle(100%, 100%);
+    &-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        @include flex-config(center, 1, row, center);
+        flex-wrap: wrap;
+        .department-folder {
+            @include flex-config(center, 1, column, center);
+            @include rectangle(100px, 100px);
+            border: 1px solid $textcolor2;
+            border-radius: 5px;
+            background-color: $textcolor;
+            margin: 1rem;
+            padding: 1rem;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                transform: scale(1.1);
+            }
+            &-icon {
+                font-size: 50px;
+            }
+        }
+    }
+}
+
+// .department-folder{
+//     @include flex-config(center, 1, column, center);
+//     @include rectangle(100px, 100px);
+//     border: 1px solid $textcolor2;
+//     border-radius: 5px;
+//     background-color: $textcolor;
+//     margin: 1rem;
+//     padding: 1rem;
+//     font-size: 20px;
+//     cursor: pointer;
+//     transition: all 0.3s ease-in-out;
+//     &:hover {
+//         transform: scale(1.1);
+//     }
+//     &-icon {
+//         font-size: 50px;
+//     }
+
+// }

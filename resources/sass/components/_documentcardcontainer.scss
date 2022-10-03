@@ -2,11 +2,13 @@
     @include flex-config(center, 1, column, center);
     @include rectangle(100%, 100%);
     .cards-container {
-        //use grid container
+        // use grid container and center the cards
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         grid-gap: 1rem;
-        padding: 1rem;
-        @include rectangle(100%, 100%);
+        justify-content: center;
+        align-items: center;
+        @include flex-config(center, 1, row, center);
+        flex-wrap: wrap;
     }
 }

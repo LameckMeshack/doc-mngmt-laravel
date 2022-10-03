@@ -14,9 +14,10 @@
         width: max-content;
         .row {
             // display: flex;
-            // flex-direction: row;
+            // flex-direction: column;
             // justify-content: space-between;
             // align-items: center;
+            // background: red;
 
             @include flex-config(space-between, 1, row, center);
         }
@@ -28,8 +29,10 @@
     .register,
     .login {
         max-width: 100%;
-        .row {
-            flex-direction: column;
+        form {
+            .row {
+                @include flex-config(center, 1, column, center);
+            }
         }
     }
 }
