@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "../context/AuthContext";
+import { createDocument } from "../store/actions/documentActions";
 
 function UploadFile() {
+    const dispatch = useDispatch();
     const [types, setTypes] = useState([]);
     const [departments, setDepartments] = useState([]);
+
     const user = useSelector((state) => state.userInfo.userInfo.user.id);
     // console.log(user);
     const [documentDetails, setDocumentDetails] = useState({
@@ -71,21 +74,8 @@ function UploadFile() {
         formData.append("user_id", documentDetails.user_id);
         formData.append("department_id", documentDetails.department_id);
         formData.append("type_id", documentDetails.type_id);
-        // handle document
-        // console.log(documentDetails);
-        axios
-            .post("/api/documents", formData)
-            .then((res) => {
-                console.log(res);
-                if (res.data.status === 200) {
-                    console.log(res.data.message);
-                } else {
-                    console.log(res.data.message);
-                }
-            })
-            .catch((err) => {
-                console.log("error", err.response.data);
-            });
+
+        dispatch(createDocument(formData));
     };
 
     return (
