@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import { AuthProvider } from "../context/AuthContext";
+import UploadFile from "./UploadFile";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/upload" element={<UploadFile />} />
             </Routes>
         </>
     );
