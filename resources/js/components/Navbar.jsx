@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
@@ -14,7 +14,7 @@ export default function Navbar() {
     return (
         <nav className="navigation">
             <NavLink to="/" className="brand-name">
-                <h4> DOCUMENT MANAGEMENT </h4>
+                <h4> DOCUMENT MANAGEMENT</h4>
             </NavLink>
             <button
                 className="hamburger"

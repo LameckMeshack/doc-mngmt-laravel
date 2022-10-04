@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../store/actions/authActions";
@@ -58,7 +58,7 @@ function Login() {
                         />
                     </div>
                     <div className="form-group">
-                        <button className="btn" type="submit">
+                        <button data-testid="btn" className="btn" type="submit">
                             Login
                         </button>
                     </div>

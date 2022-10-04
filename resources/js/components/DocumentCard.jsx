@@ -1,3 +1,4 @@
+import React from "react";
 import { FcFile } from "react-icons/fc";
 function DocumentCard({ name, access, department }) {
     return (
