@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    class="navigation"
+  >
+    <a
+      aria-current="page"
+      class="brand-name active"
+      href="/"
+    >
+      <h4>
+         DOCUMENT MANAGEMENT
+      </h4>
+    </a>
+    <button
+      class="hamburger"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"
+        />
+      </svg>
+    </button>
+    <div
+      class="navigation-menu"
+    >
+      <ul>
+        <li>
+          <a
+            class="a"
+            href="/login"
+          >
+            Login
+          </a>
+        </li>
+        <li>
+          <a
+            class="a"
+            href="/register"
+          >
+            Register
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div>
+    <div
+      class="document-card-container"
+    >
+      <h1>
+        Files
+      </h1>
+      <div
+        class="cards-container"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
