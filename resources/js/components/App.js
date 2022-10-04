@@ -16,19 +16,31 @@ import SpecificDeptCardContainer from "./SpecificDeptCardContainer";
 function App() {
     return (
         <>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/upload" element={<UploadFile />} />
-                <Route path="/documents" element={<DocumentCardContainer />} />
-                <Route path="/departments" element={<Departments />} />
-                <Route
-                    path="/department/:id"
-                    element={<SpecificDeptCardContainer />}
-                />
-            </Routes>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <AuthProvider>
+                        <Navbar />
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/upload" element={<UploadFile />} />
+                            <Route
+                                path="/documents"
+                                element={<DocumentCardContainer />}
+                            />
+                            <Route
+                                path="/departments"
+                                element={<Departments />}
+                            />
+                            <Route
+                                path="/department/:id"
+                                element={<SpecificDeptCardContainer />}
+                            />
+                        </Routes>
+                    </AuthProvider>
+                </Provider>
+            </BrowserRouter>
         </>
     );
 }
@@ -37,13 +49,7 @@ export default App;
 
 if (document.getElementById("app")) {
     ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <AuthProvider>
-                    <App />
-                </AuthProvider>
-            </Provider>
-        </BrowserRouter>,
+        <App />,
 
         document.getElementById("app")
     );
