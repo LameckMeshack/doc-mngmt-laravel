@@ -8,16 +8,21 @@ use App\Interfaces\documentRepositoryInterface;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class DocumentController extends Controller
 {
+    protected $user;
     // private  documentRepositoryInterface $documentRepository;
     //constructor
     public function __construct(documentRepositoryInterface $documentRepository)
     {
         $this->documentRepository = $documentRepository;
         // $this->middleware('auth');
+        $this->middleware('auth:api');
+        // $this->user = Auth::user();
+
     }
 
     /**
@@ -31,9 +36,6 @@ class DocumentController extends Controller
         $documents = $this->documentRepository->getAllDocuments();
         return response()->json($documents);
     }
-
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -43,8 +45,6 @@ class DocumentController extends Controller
     {
         //
     }
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -73,8 +73,6 @@ class DocumentController extends Controller
                 'message' => $validate->errors(),
             ], 400);
         }
-
-
 
         //    handle the file uploads
         if ($request->hasFile('file')) {
@@ -116,12 +114,6 @@ class DocumentController extends Controller
         $document = $this->documentRepository->getDocumentById($documentId);
         return response()->json($document);
     }
-
-
-
-
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -170,5 +162,57 @@ class DocumentController extends Controller
         $documentId = $request->id;
         $this->documentRepository->deleteDocument($documentId);
         return response()->json(['message' => 'Document deleted successfully']);
+    }
+
+    public function download(Request $request): JsonResponse
+    {
+        //
+        $documentId = $request->route('id');
+        $document = $this->documentRepository->getDocumentById($documentId);
+        $file = public_path() . '/uploads/documents/' . $document->file;
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return response()->download($file, $document->name, $headers);
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        $search = $request->search;
+        $documents = $this->documentRepository->searchDocument($search);
+        return response()->json($documents);
+    }
+
+    public function getDocumentByDepartment(Request $request): JsonResponse
+    {
+        $departmentId = $request->route('id');
+        $documents = $this->documentRepository->getDocumentByDepartment($departmentId);
+        return response()->json($documents);
+    }
+
+    public function getDocumentByType(Request $request): JsonResponse
+    {
+        $typeId = $request->route('id');
+        $documents = $this->documentRepository->getDocumentByType($typeId);
+        return response()->json($documents);
+    }
+
+    public function getDocumentByUser(Request $request): JsonResponse
+    {
+        $userId = $request->route('id');
+        $documents = $this->documentRepository->getDocumentByUser($userId);
+        return response()->json($documents);
+    }
+
+    public function getDocumentByAccess(Request $request): JsonResponse
+    {
+        $access = $request->route('access');
+        $documents = $this->documentRepository->getDocumentByAccess($access);
+        return response()->json($documents);
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('api');
     }
 }
