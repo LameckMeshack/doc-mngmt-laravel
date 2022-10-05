@@ -13,6 +13,20 @@ class DocumentRepository implements documentRepositoryInterface
     {
         return Document::with('department')->get();
     }
+    public function getDocumentByUser($userId)
+    {
+        return Document::where('user_id', $userId)->get();
+    }
+
+    public function getDocumentByDepartment($departmentId)
+    {
+        return Document::where('department_id', $departmentId)->get();
+    }
+
+    public function getDocumentByType($type)
+    {
+        return Document::where('type', $type)->get();
+    }
 
     public function getDocumentById($documentId)
     {
