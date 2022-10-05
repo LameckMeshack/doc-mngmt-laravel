@@ -25,7 +25,7 @@ class AuthController extends Controller
         // dd(request()->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'email' => 'required|string|email|max:100|unique:users',
+            'email' => 'required|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:3',
             'password_confirmation' => 'required',
             'phone' => 'required|string|min:10',
@@ -58,7 +58,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
+            'email' => 'required|email',
             'password' => 'required|string',
             // 'remember_me' => 'boolean'
         ]);
@@ -82,5 +82,25 @@ class AuthController extends Controller
             'user' => auth()->user()
 
         ]);
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return response()->json(['message' => 'User successfully signed out']);
+    }
+
+    public function profile()
+    {
+        return response()->json(auth()->user());
+    }
+
+    public function refresh()
+    {
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('api');
     }
 }
