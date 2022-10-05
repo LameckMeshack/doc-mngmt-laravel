@@ -97,6 +97,8 @@ class AuthController extends Controller
 
     public function refresh()
     {
+        // return $this->createNewToken($this->guard()->refresh());
+        return $this->createNewToken(auth()->guard('api')->refresh());
     }
 
     protected function guard()
